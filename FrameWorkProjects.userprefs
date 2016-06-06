@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TeachEqual.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\StageModel.cs">
     <Files>
-      <File FileName="Assets\Scripts\TeachEqual.cs" Line="28" Column="30" />
+      <File FileName="Assets\Scripts\TeachEqual.cs" Line="23" Column="3" />
+      <File FileName="Assets\Scripts\StageModel.cs" Line="24" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

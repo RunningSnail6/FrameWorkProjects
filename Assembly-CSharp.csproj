@@ -46,7 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FrameWork\MsgBase.cs" />
      <Compile Include="Assets\Scripts\SpriteFactory.cs" />
+     <Compile Include="Assets\Scripts\StageModel.cs" />
      <Compile Include="Assets\Scripts\TeachEqual.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Soft/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.9/Standalone/UnityEngine.UI.dll</HintPath>
