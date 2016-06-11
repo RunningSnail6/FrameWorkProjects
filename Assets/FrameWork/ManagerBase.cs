@@ -63,7 +63,25 @@ public class ManagerBase : MonoBase
         }
     }
 
-    public void unRegistMsg(ushort id,MonoBase node)
+    /// <summary>
+    /// 去掉一个脚本的若干个消息
+    /// </summary>
+    /// <param name="mon"></param>
+    /// <param name="msgs"></param>
+    public void UnRegistMsg(MonoBase mon,params ushort[] msgs)
+    {
+        for(int i = 0;i<msgs.Length;i++)
+        {
+            UnRegistMsg(msgs[i], mon);
+        }
+    }
+    
+    /// <summary>
+    /// 去掉一个消息链
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="node"></param>
+    public void UnRegistMsg(ushort id,MonoBase node)
     {
         if(!enventTree.ContainsKey(id))
         {
@@ -79,8 +97,11 @@ public class ManagerBase : MonoBase
                 //已经存在这个消息
                 if(header.next != null)//后面多个节点
                 {
-                    header.data = tmp.next.data;//把下一个节点赋值给当前头部
-                    header.next = tmp.next.next;
+                    enventTree[id] = tmp.next;
+                    header.next = null;
+
+                    //header.data = tmp.next.data;//把下一个节点赋值给当前头部
+                    //header.next = tmp.next.next;
                 }
                 else //只有一个节点的情况
                 {
@@ -89,18 +110,49 @@ public class ManagerBase : MonoBase
             }
             else//去掉尾部和中间的节点
             {
-                while(tmp.next != null && tmp.next.data != null)
+                while(tmp.next != null && tmp.next.data != node)//下一个不是我要找的node 就一直遍历下去
                 {
                     tmp = tmp.next;
                 }//表示已经找到了该节点
 
-                if(tmp.next.next != null)
+                //没有引用会自动释放
+                if(tmp.next.next != null)//去掉中间的
                 {
                     tmp.next = tmp.next.next;
                 }
-
+                else//去掉尾部的
+                {
+                    tmp.next = null;
+                }
             }
         }
     }
 
+    //来了消息 通知整个消息链表
+    public override void ProcessEvent(MsgBase tmpMsg)
+    {
+        if(!enventTree.ContainsKey(tmpMsg.msgId))
+        {
+            Debug.LogError("msg not contain msgid == " + tmpMsg.msgId);
+            Debug.LogError("msg manager == " + tmpMsg.GetManager());
+            return;
+        }
+        else
+        {
+            EventNode tmp = enventTree[tmpMsg.msgId];
+
+            do
+            {
+                tmp.data.ProcessEvent(tmpMsg);
+            }
+            while (tmp != null);
+        }
+    }
 }
+
+
+
+
+
+
+

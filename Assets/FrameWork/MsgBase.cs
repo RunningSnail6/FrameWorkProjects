@@ -19,3 +19,19 @@ public class MsgBase
     }
 
 }
+
+public class MsgTransform:MsgBase
+{
+    public Transform value;
+
+    public MsgTransform():base(0)
+    {
+
+    }
+
+    public MsgTransform(ushort tmpId,Transform tmpTrans):base(tmpId)
+    {
+        this.msgId = tmpId;
+        this.value = tmpTrans;
+    }
+}
