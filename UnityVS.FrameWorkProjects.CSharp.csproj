@@ -18,6 +18,7 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>4.6.9f1</UnityVersion>
     <RootNamespace></RootNamespace>
+    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,13 +60,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FrameWork\Base\Load.cs" />
+    <Compile Include="Assets\FrameWork\Base\NPCBase.cs" />
+    <Compile Include="Assets\FrameWork\Base\UIBase.cs" />
     <Compile Include="Assets\FrameWork\FrameTools.cs" />
+    <Compile Include="Assets\FrameWork\Manager\MsgCenter.cs" />
+    <Compile Include="Assets\FrameWork\Manager\NPCManager.cs" />
+    <Compile Include="Assets\FrameWork\Manager\UIManager.cs" />
     <Compile Include="Assets\FrameWork\ManagerBase.cs" />
     <Compile Include="Assets\FrameWork\MonoBase.cs" />
     <Compile Include="Assets\FrameWork\MsgBase.cs" />
-    <Compile Include="Assets\Scripts\SpriteFactory.cs" />
-    <Compile Include="Assets\Scripts\StageModel.cs" />
-    <Compile Include="Assets\Scripts\TeachEqual.cs" />
+    <Compile Include="Assets\Scripts\Prictic\SpriteFactory.cs" />
+    <Compile Include="Assets\Scripts\Prictic\StageModel.cs" />
+    <Compile Include="Assets\Scripts\Prictic\TeachEqual.cs" />
+    <Compile Include="Assets\Scripts\UIBehaviour.cs" />
+    <Compile Include="Assets\Scripts\UIEventMsg.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
