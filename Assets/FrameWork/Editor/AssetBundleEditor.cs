@@ -99,11 +99,26 @@ public class AssetBundleEditor
         }
     }
 
+    public static string FixedWindowsPath(string path)
+    {
+        path = path.Replace("/","\\");
+        return path;
+    }
 
     //计算mart标记值等于多少
+    //string path = Application.dataPath + "Art/Scences/";     全是  右斜
     public static string GetBundlePath(FileInfo file,string replacePath)
     {
-        return null;
+        //e:\\tmp\\test.text
+        string tmpPath = file.FullName;
+        tmpPath = FixedWindowsPath(tmpPath);
+        ////Assets/Art/Scences/   ScenceOne  //load
+        int assetCount = tmpPath.IndexOf(replacePath);
+        assetCount += replacePath.Length + 1;
+
+        int nameCount = tmpPath.LastIndexOf(file.Name);
+        int tmpCount = replacePath.LastIndexOf("/");
+        string scenceHead = replacePath.Substring(tmpCount + 1, replacePath.Length - tmpCount - 1);
     }
     //改变物体的tag
     public static void ChangerMark(FileInfo tmpFile,string replacePath,Dictionary<string,string> theWriter)
